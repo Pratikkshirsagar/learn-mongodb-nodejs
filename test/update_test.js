@@ -6,7 +6,7 @@ describe('Updating a user', async () => {
 
   beforeEach(async () => {
     try {
-      joe = new User({ name: 'Joe' });
+      joe = new User({ name: 'Joe', postCount: 0 });
       await joe.save();
     } catch (err) {
       console.log(err);
@@ -27,5 +27,13 @@ describe('Updating a user', async () => {
     const user = await User.findOne({ name: 'Joe' });
 
     assert(user === null);
+  });
+
+  it('A user can have their postcount inscremeted by 1', async () => {
+    await User.updateMany({ name: 'Joe' }, { $inc: { postCount: 1 } });
+
+    const user = await User.findOne({ name: 'Joe' });
+
+    assert(user.postCount === 1);
   });
 });

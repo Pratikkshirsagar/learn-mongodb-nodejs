@@ -7,8 +7,7 @@ describe('Reding users out of the database', async () => {
 
   beforeEach(async () => {
     try {
-      joe = new User({ name: 'Joe' });
-      await joe.save();
+      joe = await User.create({ name: 'Joe' });
     } catch (err) {
       console.log(err);
     }

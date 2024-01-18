@@ -18,8 +18,8 @@ beforeEach(async () => {
   try {
     await Promise.all([
       mongoose.connection.collection('users').drop(),
-      mongoose.connection.collection('blogPost').drop(),
-      mongoose.connection.collection('comment').drop(),
+      mongoose.connection.collection('blogposts').drop(),
+      mongoose.connection.collection('comments').drop(),
     ]);
   } catch (error) {
     console.log(error);

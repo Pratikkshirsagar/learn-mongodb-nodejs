@@ -29,12 +29,12 @@ describe('Association', async () => {
     }
   });
 
-  it.only('saves a relation between user and blogpost', async () => {
+  it('saves a relation between user and blogpost', async () => {
     const user = await User.findOne({ name: 'Joe' }).populate('blogPosts');
     assert(user.blogPosts[0].title === 'JS is Great');
   });
 
-  it.only('saves a full relation tree', async () => {
+  it('saves a full relation tree', async () => {
     const user = await User.findOne({ name: 'Joe' }).populate({
       path: 'blogPosts',
       populate: { path: 'comments' },

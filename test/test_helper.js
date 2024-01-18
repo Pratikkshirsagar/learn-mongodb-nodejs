@@ -15,5 +15,13 @@ before(async () => {
 });
 
 beforeEach(async () => {
-  await mongoose.connection.collection('users').drop();
+  try {
+    await Promise.all([
+      mongoose.connection.collection('users').drop(),
+      mongoose.connection.collection('blogPost').drop(),
+      mongoose.connection.collection('comment').drop(),
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
 });
